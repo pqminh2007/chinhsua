@@ -13,56 +13,74 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-# Danh sách nguồn đã được thêm đầy đủ các file còn thiếu từ thư mục cha
+# Tổng hợp tất cả các file nguồn trong dự án (Đã xóa bỏ hoàn toàn dấu ../)
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        Room.h
-        RoomFactory.h
-        RoomFactory.cpp
-        Account.h
-        Account.cpp
-        DatabaseManager.h
-        DatabaseManager.cpp
-        logindialog.h
-        logindialog.cpp
-        resources.qrc
+    main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+    resources.qrc
 
-        # --- CÁC FILE THIẾU ĐƯỢC THÊM VÀO TỪ THƯ MỤC CHA ---
-        ../Classify.h
-        ../Classify.cpp
-        ../Data.h
-        ../Invoice.h
-        ../Invoice.cpp
-        ../Statistic.h
-        ../Statistic.cpp
-        ../deluxeroom.h
-        ../deluxeroom.cpp
-        ../room.h
-        ../room.cpp
-        ../standardroom.h
-        ../standardroom.cpp
-        ../suiteroom.h
-        ../suiteroom.cpp
+    # Quản lý Tài khoản & Đăng nhập
+    Account.h
+    Account.cpp
+    logindialog.h
+    logindialog.cpp
+    UserManager.h
+    UserManager.cpp
+
+    # Khách hàng & Nhân viên
+    person.h
+    person.cpp
+    customer.h
+    customer.cpp
+    employee.h
+    employee.cpp
+
+    # Quản lý Phòng (Room)
+    room.h
+    room.cpp
+    Room.h                # Lưu ý: Giữ lại nếu hệ thống phân biệt hoa/thường hệ điều hành
+    RoomFactory.h
+    RoomFactory.cpp
+    standardroom.h
+    standardroom.cpp
+    deluxeroom.h
+    deluxeroom.cpp
+    suiteroom.h
+    suiteroom.cpp
+
+    # Quản lý Đặt phòng (Booking)
+    Booking.h
+    Booking.cpp
+    BookingManager.h
+    BookingManager.cpp
+
+    # Quản lý Dịch vụ (Service)
+    Service.h
+    Service.cpp
+    ServiceUsage.h
+    ServiceUsage.cpp
+
+    # Cơ sở dữ liệu & Tiện ích khác
+    DatabaseManager.h
+    DatabaseManager.cpp
+    Classify.h
+    Classify.cpp
+    Data.h
+    date.h
+    date.cpp
+    Invoice.h
+    Invoice.cpp
+    Statistic.h
+    Statistic.cpp
+    class_giu_de_xem_tong.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(untitled3
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        class_giu_de_xem_tong.cpp
-        customer.cpp
-        customer.h
-        date.cpp
-        date.h
-        employee.h
-        employee.cpp
-        person.cpp
-        person.h
-        UserManager.cpp
-        UserManager.h
     )
 else()
     add_executable(untitled3

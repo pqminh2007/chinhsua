@@ -1,5 +1,4 @@
-#ifndef ROOM_H
-#define ROOM_H
+#pragma once
 #include <string>
 
 class Room {
@@ -17,11 +16,14 @@ public:
     std::string getRoomId() const { return roomId; }
     std::string getRoomType() const { return roomType; }
 
-    // --- ĐÂY LÀ HÀM QUAN TRỌNG ĐỂ SỬA LỖI TRONG MAIN.CPP ---
+    // Hàm bổ trợ đồng bộ cho main.cpp
     std::string getRoomNumber() const { return roomId; }
 
     double getPrice() const { return price; }
     bool getStatus() const { return isBooked; }
     void setStatus(bool status) { isBooked = status; }
+
+    // --- BỔ SUNG HÀM NÀY ĐỂ ĐỒNG BỘ VỚI STATISTIC.CPP ---
+    bool isAvailable() const { return !isBooked; }
 };
-#endif
+
